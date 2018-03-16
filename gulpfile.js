@@ -1,5 +1,6 @@
 var gulp = require('gulp'),
     less = require('gulp-less'),
+    handlebars = require('gulp-handlebars');
     browserSync = require('browser-sync');
 
 gulp.task('less', function(){ 
