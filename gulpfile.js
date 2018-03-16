@@ -1,14 +1,15 @@
 var gulp = require('gulp'),
     less = require('gulp-less'),
-    handlebars = require('gulp-handlebars');
-    browserSync = require('browser-sync');
+    browserSync = require('browser-sync'),
+    cleanCSS = require('gulp-clean-css');
 
 gulp.task('less', function(){ 
     return gulp.src('app/less/application.less') 
         .pipe(less({
           paths: ['app/less/']
         }
-        )) 
+        ))
+        .pipe(cleanCSS({compatibility: '*'}))
         .pipe(gulp.dest('app/css'))
         .pipe(browserSync.reload({
           stream: true
