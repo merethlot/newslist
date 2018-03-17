@@ -1,5 +1,8 @@
 $(document).ready(function () {
   var loadCount = 0;
+  function kFormatter(num) {
+      return num > 999 ? (num/1000).toFixed(1) + 'K' : num
+  }
   function generate_news_item(index, item) {
       var newItem = '';
       if ((loadCount % 2 == 1 && index == 0) || (loadCount % 2 == 0 && index == 1)) {
@@ -15,7 +18,7 @@ $(document).ready(function () {
       newItem    += '<div class="news-item-title"><a href="' + item['article_url'] + '">' + item['title'].replace(/\\r\\n/g, "<br>") + '</a></div>';
       newItem    += '<div class="news-item-text">' + item['announce'].replace(/\\r\\n/g, "<br>") + '</div>';
       newItem    += '<div class="news-item-info">';
-      newItem    += '<span class="news-item-views"><i class="icon-eye"></i>' + item['view_count'] + '</span>';
+      newItem    += '<span class="news-item-views"><i class="icon-eye"></i>' + kFormatter(item['view_count']) + '</span>';
       newItem    += '<span class="news-item-comments"><i class="icon-question"></i>' + item['comment_count'] + '</span>';
       newItem    += '<span class="news-item-clock"><i class="icon-clock"></i>' + jQuery.timeago(item['publish_date']) + '</span>';
       newItem    += '</div>'; // closing info div
@@ -41,6 +44,6 @@ $(document).ready(function () {
   $('.btn-news-more').click(function () {
     get_news_list();
   });
-  get_news_list();
+  get_news_list();  
 
 });

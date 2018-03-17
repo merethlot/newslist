@@ -1,6 +1,7 @@
 var gulp = require('gulp'),
     less = require('gulp-less'),
     browserSync = require('browser-sync'),
+    autoprefixer = require('gulp-autoprefixer'),
     cleanCSS = require('gulp-clean-css');
 
 gulp.task('less', function(){ 
@@ -9,6 +10,10 @@ gulp.task('less', function(){
           paths: ['app/less/']
         }
         ))
+        .pipe(autoprefixer({
+            browsers: ['last 2 versions'],
+            cascade: false
+        }))        
         .pipe(cleanCSS({compatibility: '*'}))
         .pipe(gulp.dest('app/css'))
         .pipe(browserSync.reload({
